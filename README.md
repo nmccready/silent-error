@@ -1,6 +1,8 @@
-# silent-error [![Build Status](https://travis-ci.org/ember-cli/silent-error.svg)](https://travis-ci.org/ember-cli/silent-error)
+# silent-verror [![Build Status](https://travis-ci.org/nmccreadu/silent-verror.svg)](https://travis-ci.org/nmcccready/silent-verror)
 
-An error subclass for humanized errors. This module allows for inter-module detection of errors which are fatal, but where a stacktrace by default provides negative value.
+An error subclass for humanized ([even more humanized](https://github.com/joyent/node-verror)) errors. This module allows for inter-module detection of errors which are fatal, but where a stacktrace by default provides negative value.
+
+Inspired by (slight mod) [silent-error](https://github.com/ember-cli/silent-error) but to use VError under the hood.
 
 Some use-cases:
 
@@ -9,7 +11,7 @@ Some use-cases:
 
 Obviously stack traces can still be valuable. To view the stacks, the following environment variable can be set to `true`
 
-```
+```sh
 SILENT_ERROR=verbose <run program>
 ```
 
@@ -39,12 +41,12 @@ async function caller() {
 
 ## Installation
 
-```
-yarn add silent-error
+```sh
+yarn add silent-verror
 ```
 
 or
 
-```
-npm install --save silent-error
+```sh
+npm install --save silent-verror
 ```
