@@ -1,7 +1,7 @@
 'use strict';
 
 var SilentError = require('./');
-var expect      = require('chai').expect;
+var { expect } = require('chai');
 
 describe('SilentError', function() {
   var error;
@@ -22,7 +22,7 @@ describe('SilentError', function() {
       expect(!error.suppressStacktrace, 'suppressesStacktrace should be false');
     });
 
-    it('shouldn\'t suppress stack when false', function() {
+    it("shouldn't suppress stack when false", function() {
       process.env.EMBER_VERBOSE_ERRORS = 'false';
       error = new SilentError();
       expect(error.suppressStacktrace, 'suppressesStacktrace should be true');
@@ -40,7 +40,7 @@ describe('SilentError', function() {
       expect(!error.suppressStacktrace, 'suppressesStacktrace should be false');
     });
 
-    it('shouldn\'t suppress stack when unset', function() {
+    it("shouldn't suppress stack when unset", function() {
       delete process.env.SILENT_ERROR;
       error = new SilentError();
       expect(error.suppressStacktrace, 'suppressesStacktrace should be true');
@@ -54,15 +54,18 @@ describe('SilentError', function() {
       }).to.throw('I AM ERROR');
     });
 
-    it('throws false|null|undefined', function() {
-      expect(function() { SilentError.debugOrThrow('label', false);     }).to.throw(false);
-      expect(function() { SilentError.debugOrThrow('label', true);      }).to.throw(true);
-      expect(function() { SilentError.debugOrThrow('label', undefined); }).to.throw(undefined);
-      expect(function() { SilentError.debugOrThrow('label', null);      }).to.throw(null);
-    });
+    [false, true, undefined, null].forEach((testVar) =>
+      it(`throw ${testVar}`, () =>
+        // this test is why we're on chai 3.X and less
+        expect(() => SilentError.debugOrThrow('label', testVar)).to.throw(
+          testVar
+        ))
+    );
 
     it('doesnt throw with SilentError', function() {
-      expect(function() { SilentError.debugOrThrow('label', new SilentError('ERROR')); }).to.not.throw();
+      expect(function() {
+        SilentError.debugOrThrow('label', new SilentError('ERROR'));
+      }).to.not.throw();
     });
   });
 });
