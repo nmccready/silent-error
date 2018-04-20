@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/nmccready/silent-verror.git"
   },
-  "author": "Nick McCready <nemtcan@gmai.com>",
-  "originalAuthor": "Stefan Penner <stefan.penner@gmai.com>",
+  "author": "Nick McCready <nemtcan@gmail.com>",
+  "originalAuthor": "Stefan Penner <stefan.penner@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nmccready/silent-verror/issues"
