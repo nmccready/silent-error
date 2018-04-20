@@ -4,11 +4,11 @@ module.exports = {
     commonjs: true,
     es6: true
   },
-  extends: 'eslint:recommended',
+  extends: 'standard',
   rules: {
-    'prefer-destructuring': 'error',
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single', { avoidEscape: true }],
+    'no-var': 'error',
+    'space-before-function-paren': 0,
+    'prefer-const': 'error',
     semi: ['error', 'always']
   },
   overrides: {

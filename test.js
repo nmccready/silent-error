@@ -1,55 +1,55 @@
 'use strict';
 
-var SilentError = require('./');
-var { expect } = require('chai');
+const SilentError = require('./');
+const { expect } = require('chai');
 
-describe('SilentError', function() {
-  var error;
+describe('SilentError', () => {
+  let error;
 
-  it('should suppress the stack trace by default', function() {
+  it('should suppress the stack trace by default', () => {
     error = new SilentError();
     expect(error.suppressStacktrace, 'suppressesStacktrace should be true');
   });
 
-  describe('with EMBER_VERBOSE_ERRORS set', function() {
-    beforeEach(function() {
+  describe('with EMBER_VERBOSE_ERRORS set', () => {
+    beforeEach(() => {
       delete process.env.EMBER_VERBOSE_ERRORS;
     });
 
-    it('should suppress stack when true', function() {
+    it('should suppress stack when true', () => {
       process.env.EMBER_VERBOSE_ERRORS = 'true';
       error = new SilentError();
       expect(!error.suppressStacktrace, 'suppressesStacktrace should be false');
     });
 
-    it("shouldn't suppress stack when false", function() {
+    it("shouldn't suppress stack when false", () => {
       process.env.EMBER_VERBOSE_ERRORS = 'false';
       error = new SilentError();
       expect(error.suppressStacktrace, 'suppressesStacktrace should be true');
     });
   });
 
-  describe('with SILENT_ERROR set', function() {
-    beforeEach(function() {
+  describe('with SILENT_ERROR set', () => {
+    beforeEach(() => {
       delete process.env.SILENT_ERROR;
     });
 
-    it('should suppress stack when false', function() {
+    it('should suppress stack when false', () => {
       process.env.SILENT_ERROR = 'verbose';
       error = new SilentError();
       expect(!error.suppressStacktrace, 'suppressesStacktrace should be false');
     });
 
-    it("shouldn't suppress stack when unset", function() {
+    it("shouldn't suppress stack when unset", () => {
       delete process.env.SILENT_ERROR;
       error = new SilentError();
       expect(error.suppressStacktrace, 'suppressesStacktrace should be true');
     });
   });
 
-  describe('debugOrThrow', function() {
-    it('throws non SilentError', function() {
-      expect(function() {
+  describe('debugOrThrow', () => {
+    it('throws non SilentError', () => {
+      expect(() => {
         SilentError.debugOrThrow('label', new Error('I AM ERROR'));
       }).to.throw('I AM ERROR');
     });
@@ -62,8 +62,8 @@ describe('SilentError', function() {
         ))
     );
 
-    it('doesnt throw with SilentError', function() {
-      expect(function() {
+    it('doesnt throw with SilentError', () => {
+      expect(() => {
         SilentError.debugOrThrow('label', new SilentError('ERROR'));
       }).to.not.throw();
     });

@@ -1,5 +1,5 @@
 'use strict';
-var debug = require('debug');
+const debug = require('debug');
 
 function SilentError(message) {
   if (!(this instanceof SilentError)) {
