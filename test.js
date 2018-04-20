@@ -1,10 +1,15 @@
-'use strict';
-
+const VError = require('verror');
 const SilentError = require('./');
 const { expect } = require('chai');
 
 describe('SilentError', () => {
   let error;
+
+  it('keeps created name and is silent', () => {
+    error = new SilentError({ name: 'SomeError' });
+    expect(error.name, 'SomeError');
+    expect(VError.info(error).silent, true);
+  });
 
   it('should suppress the stack trace by default', () => {
     error = new SilentError();
