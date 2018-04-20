@@ -1,15 +1,15 @@
 const debug = require('debug');
 const VError = require('verror');
 
-class SilentError extends VError {
+class SilentVError extends VError {
   constructor(...args) {
     super(...args);
 
-    this.name = this.name || 'SilentError';
+    this.name = this.name || 'SilentVError';
     this.jse_info.silent = true;
 
-    if (!(this instanceof SilentError)) {
-      throw new TypeError('SilentError must be instantiated with `new`');
+    if (!(this instanceof SilentVError)) {
+      throw new TypeError('SilentVError must be instantiated with `new`');
     }
 
     this.suppressedStacktrace = true;
@@ -23,10 +23,10 @@ class SilentError extends VError {
     }
   }
 }
-SilentError.prototype = Object.create(Error.prototype);
+SilentVError.prototype = Object.create(Error.prototype);
 
-SilentError.debugOrThrow = function debugOrThrow(label, e) {
-  // if the error is a SilentError, ignore
+SilentVError.debugOrThrow = function debugOrThrow(label, e) {
+  // if the error is a SilentVError, ignore
   if (e && e.jse_info && e.jse_info.silent) {
     // ignore this error, invalid blueprints are handled in run
     debug(label)(e);
@@ -36,4 +36,4 @@ SilentError.debugOrThrow = function debugOrThrow(label, e) {
   }
 };
 
-module.exports = SilentError;
+module.exports = SilentVError;

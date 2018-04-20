@@ -19,7 +19,7 @@ SILENT_ERROR=verbose <run program>
 // in one node module
 async function runCommand(name) {
    // some logic
-   throw new SilentError(`command: '${name}' is not installed`);
+   throw new SilentVError(`command: '${name}' is not installed`);
 }
 ```
 
@@ -30,10 +30,10 @@ async function caller() {
   try {
     await runCommand('foo');
   } catch(e) {
-    SilentError.debugOrThrow(e);
+    SilentVError.debugOrThrow(e);
   }
 
-  SilentError.debugOrThrow
+  SilentVError.debugOrThrow
 }
 ```
 
