@@ -4,7 +4,7 @@
   "description": "stackless unless otherwise requested error",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "eslint *.js && mocha test"
   },
   "files": [
     "index.js"
@@ -20,10 +20,13 @@
   },
   "homepage": "https://github.com/stefanpenner/silent-error#readme",
   "dependencies": {
-    "debug": "^2.2.0"
+    "debug": "^3"
   },
   "devDependencies": {
     "chai": "^2.3.0",
-    "mocha": "^2.2.5"
+    "eslint": "^4.19.1",
+    "mocha": "^2.2.5",
+    "prettier": "^1.12.1",
+    "prettier-eslint": "^8.8.1"
   }
 }
