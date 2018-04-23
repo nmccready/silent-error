@@ -1,4 +1,4 @@
-# silent-verror [![Build Status](https://travis-ci.org/nmccreadu/silent-verror.svg)](https://travis-ci.org/nmcccready/silent-verror)
+# silent-verror [![Build Status](https://travis-ci.org/nmccready/silent-verror.svg)](https://travis-ci.org/nmccready/silent-verror)
 
 An error subclass for humanized ([even more humanized](https://github.com/joyent/node-verror)) errors. This module allows for inter-module detection of errors which are fatal, but where a stacktrace by default provides negative value.
 
